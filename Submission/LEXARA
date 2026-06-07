@@ -1,0 +1,420 @@
+<div align="center">
+
+```
+██╗     ███████╗██╗  ██╗ █████╗ ██████╗  █████╗
+██║     ██╔════╝╚██╗██╔╝██╔══██╗██╔══██╗██╔══██╗
+██║     █████╗   ╚███╔╝ ███████║██████╔╝███████║
+██║     ██╔══╝   ██╔██╗ ██╔══██║██╔══██╗██╔══██║
+███████╗███████╗██╔╝ ██╗██║  ██║██║  ██║██║  ██║
+╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝
+```
+
+**Legal Exploration & Contextual Advice for Rights & Access**
+
+*NLP-powered justice system guide for everyday people*
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://python.org)
+[![Issues](https://img.shields.io/github/issues/your-org/lexara)](https://github.com/your-org/lexara/issues)
+[![Stars](https://img.shields.io/github/stars/your-org/lexara)](https://github.com/your-org/lexara/stargazers)
+
+[Demo](#demo) · [Features](#features) · [NLP Architecture](#nlp-architecture) · [Getting Started](#getting-started) · [Contributing](#contributing) · [Roadmap](#roadmap)
+
+</div>
+
+---
+
+## What is LEXARA?
+
+The justice system is complex, expensive, and inaccessible to most people who need it the most. LEXARA is an open-source NLP-powered platform that bridges this gap — helping everyday people **understand their legal rights**, **navigate court procedures**, and **decode legal jargon** without needing a law degree or a lawyer on speed dial.
+
+LEXARA is not a substitute for legal counsel. It is an intelligent guide that democratizes access to legal knowledge through the power of natural language processing.
+
+> *"Justice is only accessible if it's understandable."*
+
+---
+
+## Features
+
+| Feature | Description |
+|---|---|
+| 🎯 **Intent Classification** | Identifies which legal domain a user's query falls under — criminal, civil, family, labor, housing, immigration, and more |
+| 🔍 **Named Entity Recognition** | Extracts key legal entities: case type, jurisdiction, parties involved, dates, and statutes |
+| 🧠 **Semantic Search** | Matches natural language queries to relevant legal procedures using dense vector embeddings |
+| ⛓️ **Chain-of-Thought Reasoning** | Explains legal reasoning step-by-step, making complex law approachable |
+| 📚 **Jargon Decoder** | Converts dense legal text into plain language explanations |
+| 🗺️ **Jurisdiction Awareness** | Adapts guidance based on the user's country, state, or region |
+
+---
+
+## NLP Architecture
+
+LEXARA is built around four core NLP/ML subsystems:
+
+```
+User Query
+    │
+    ▼
+┌───────────────────────────────────┐
+│   1. INTENT CLASSIFIER            │
+│   (What legal domain is this?)    │
+│   Model: Fine-tuned BERT / SetFit │
+│   Labels: Criminal · Civil ·      │
+│   Family · Labor · Housing · etc. │
+└────────────────┬──────────────────┘
+                 │
+                 ▼
+┌───────────────────────────────────┐
+│   2. NAMED ENTITY RECOGNIZER      │
+│   (Who, What, Where, When?)       │
+│   Model: SpaCy / LegalBERT NER    │
+│   Entities: Jurisdiction · Party  │
+│   Type · Statute · Date · Court   │
+└────────────────┬──────────────────┘
+                 │
+                 ▼
+┌───────────────────────────────────┐
+│   3. SEMANTIC RETRIEVER           │
+│   (Which procedure applies?)      │
+│   Model: Sentence-Transformers    │
+│   Index: FAISS / ChromaDB         │
+│   Corpus: Legal procedure docs    │
+└────────────────┬──────────────────┘
+                 │
+                 ▼
+┌───────────────────────────────────┐
+│   4. CHAIN-OF-THOUGHT REASONER    │
+│   (Step-by-step legal reasoning)  │
+│   LLM with structured CoT prompt  │
+│   Output: Plain language guidance │
+└───────────────────────────────────┘
+```
+
+### Key Models & Libraries
+
+- **Intent Classification**: `SetFit` (few-shot), `distilbert-base-uncased` (fine-tuned)
+- **NER**: `spaCy en_core_web_trf`, `nlpaueb/legal-bert-base-uncased`
+- **Semantic Similarity**: `sentence-transformers/all-MiniLM-L6-v2`, `lexlms/legal-roberta-base`
+- **Vector Store**: `FAISS` (local), `ChromaDB` (persistent)
+- **LLM Reasoning**: Claude API / OpenAI API (configurable backend)
+- **Backend**: FastAPI
+- **Frontend**: React + TypeScript
+
+---
+
+## Project Structure
+
+```
+lexara/
+├── backend/
+│   ├── api/                    # FastAPI route handlers
+│   ├── nlp/
+│   │   ├── intent/             # Intent classification module
+│   │   ├── ner/                # Named entity recognition
+│   │   ├── retrieval/          # Semantic search & vector store
+│   │   └── reasoning/          # Chain-of-thought prompting
+│   ├── data/
+│   │   ├── corpora/            # Legal procedure documents
+│   │   ├── training/           # Labeled training datasets
+│   │   └── embeddings/         # Precomputed vector indexes
+│   ├── models/                 # Saved fine-tuned model weights
+│   └── utils/                  # Shared helpers & preprocessors
+├── frontend/
+│   ├── src/
+│   │   ├── components/         # React UI components
+│   │   ├── pages/              # Route-level pages
+│   │   └── hooks/              # Custom React hooks
+│   └── public/
+├── notebooks/                  # Jupyter notebooks for experiments
+├── scripts/                    # Data prep & model training scripts
+├── tests/
+│   ├── unit/
+│   └── integration/
+├── docs/                       # Extended documentation
+├── docker-compose.yml
+├── pyproject.toml
+└── README.md                   # You are here
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.10+
+- Node.js 18+
+- Git
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-org/lexara.git
+cd lexara
+
+# 2. Create and activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+
+# 3. Install Python dependencies
+pip install -e ".[dev]"
+
+# 4. Install frontend dependencies
+cd frontend && npm install && cd ..
+
+# 5. Copy environment config
+cp .env.example .env
+# Edit .env with your API keys and config
+
+# 6. Download base NLP models
+python scripts/download_models.py
+
+# 7. Build the vector index from legal corpus
+python scripts/build_index.py
+```
+
+### Running Locally
+
+```bash
+# Start backend (FastAPI)
+uvicorn backend.api.main:app --reload --port 8000
+
+# Start frontend (separate terminal)
+cd frontend && npm run dev
+
+# Or run everything with Docker
+docker-compose up
+```
+
+Visit `http://localhost:3000` to use LEXARA locally.
+
+### Running Tests
+
+```bash
+# All tests
+pytest
+
+# With coverage
+pytest --cov=backend --cov-report=html
+
+# Specific module
+pytest tests/unit/nlp/test_intent.py
+```
+
+---
+
+## Demo
+
+> *(Screenshot or GIF of the interface here)*
+
+**Example interaction:**
+
+```
+User:  "My landlord locked me out without any notice. What can I do?"
+
+LEXARA Intent:  Housing Law → Tenant Rights
+LEXARA NER:     Party: [landlord, tenant] | Issue: [illegal lockout]
+LEXARA Finds:   "Unlawful Lockout — Tenant Remedies" procedure
+
+LEXARA Answer:
+  Step 1: Your landlord has likely violated tenant protection laws.
+          In most jurisdictions, a landlord cannot lock out a tenant
+          without a court order, regardless of rent status.
+
+  Step 2: Document everything — photograph the locked entry,
+          note the date/time, save any communications.
+
+  Step 3: You may be entitled to file an emergency injunction
+          to regain access within 24–72 hours.
+
+  Step 4: Contact your local tenant rights organization or
+          legal aid office for jurisdiction-specific next steps.
+
+  ⚠️  This is general guidance, not legal advice. Consult a
+      licensed attorney for your specific situation.
+```
+
+---
+
+## Contributing
+
+We welcome contributions from developers, legal professionals, researchers, linguists, and advocates. Every skill level is valued here.
+
+### Ways to Contribute
+
+| Area | What's Needed | Label |
+|---|---|---|
+| 🤖 NLP/ML | Improve intent classifier accuracy | `nlp` |
+| 🤖 NLP/ML | Add new legal NER entity types | `nlp` `ner` |
+| 📚 Legal Data | Curate and annotate legal procedure docs | `data` |
+| 🌍 Localization | Add jurisdiction coverage (new states/countries) | `jurisdiction` |
+| 🖥️ Frontend | UI components and accessibility | `frontend` |
+| 🧪 Testing | Unit/integration test coverage | `testing` |
+| 📖 Docs | Improve documentation and guides | `docs` |
+| 🐛 Bugs | Find and fix bugs | `bug` |
+| 🌐 Translation | Translate UI and legal content | `i18n` |
+
+### Contribution Workflow
+
+```
+1. Fork the repo → 2. Create a branch → 3. Make changes
+        → 4. Write tests → 5. Open a PR → 6. Code review → 7. Merge 🎉
+```
+
+#### Step-by-step
+
+```bash
+# 1. Fork the repo on GitHub, then clone your fork
+git clone https://github.com/YOUR_USERNAME/lexara.git
+
+# 2. Add upstream remote
+git remote add upstream https://github.com/your-org/lexara.git
+
+# 3. Create a feature branch
+git checkout -b feature/improve-intent-classifier
+
+# 4. Make your changes, write tests, commit
+git commit -m "feat(nlp): improve intent classification for housing law queries"
+
+# 5. Push to your fork
+git push origin feature/improve-intent-classifier
+
+# 6. Open a Pull Request on GitHub
+```
+
+#### Commit Message Format
+
+We follow [Conventional Commits](https://www.conventionalcommits.org/):
+
+```
+feat(nlp):       new feature in the NLP pipeline
+fix(ner):        bug fix in entity recognition
+data(corpus):    legal corpus additions or changes
+docs:            documentation changes
+test:            adding or updating tests
+refactor:        code refactoring, no behavior change
+chore:           build tools, CI config, dependencies
+```
+
+### Good First Issues
+
+New to the project? Start here:
+
+- [ ] Add unit tests for the `IntentClassifier` class
+- [ ] Improve the jargon decoder for contract law terminology
+- [ ] Add support for Canadian provincial jurisdiction routing
+- [ ] Write a tutorial notebook for the semantic retrieval module
+- [ ] Improve accessibility (ARIA labels) on the frontend
+
+Browse issues labeled [`good first issue`](https://github.com/your-org/lexara/labels/good%20first%20issue) on GitHub.
+
+### Code Style
+
+- **Python**: [Black](https://github.com/psf/black) + [isort](https://pycli.readthedocs.io/en/stable/isort.html) + [Ruff](https://github.com/astral-sh/ruff) for linting
+- **TypeScript**: ESLint + Prettier
+- **Pre-commit hooks**: Configured via `.pre-commit-config.yaml` — run `pre-commit install` after cloning
+
+---
+
+## NLP Models: Training & Fine-tuning
+
+### Intent Classifier
+
+The intent classifier uses `SetFit` for few-shot fine-tuning on legal domain labels. To retrain or extend it:
+
+```bash
+# Prepare labeled data
+python scripts/prepare_intent_data.py --input data/raw/ --output data/training/intent/
+
+# Fine-tune
+python scripts/train_intent_classifier.py \
+  --model sentence-transformers/all-MiniLM-L6-v2 \
+  --data data/training/intent/ \
+  --output models/intent/
+
+# Evaluate
+python scripts/evaluate_intent.py --model models/intent/
+```
+
+Training data format (`data/training/intent/train.jsonl`):
+```json
+{"text": "My employer hasn't paid me in 3 weeks", "label": "labor_law"}
+{"text": "I received a court summons for debt collection", "label": "civil_law"}
+```
+
+### Adding a New Jurisdiction
+
+1. Add procedure documents to `data/corpora/<jurisdiction>/`
+2. Register the jurisdiction in `backend/nlp/retrieval/jurisdictions.py`
+3. Rebuild the index: `python scripts/build_index.py --jurisdiction <name>`
+4. Add test cases in `tests/unit/test_jurisdictions.py`
+
+---
+
+## Roadmap
+
+### v0.2 — Foundation *(current)*
+- [x] Intent classification (8 legal domains)
+- [x] Basic NER pipeline
+- [x] Semantic retrieval over US federal law procedures
+- [x] Chain-of-thought reasoning integration
+- [x] React frontend MVP
+
+### v0.3 — Coverage Expansion
+- [ ] Add 50 US state jurisdictions
+- [ ] UK, Canada, India, Australia coverage
+- [ ] Multilingual support (Spanish, Hindi, French)
+- [ ] User session history
+
+### v0.4 — Intelligence
+- [ ] Fine-tuned legal LLM (open weights)
+- [ ] Case outcome prediction (ML, not legal advice)
+- [ ] Document upload & analysis (contracts, summons)
+- [ ] Voice query support
+
+### v1.0 — Accessibility & Scale
+- [ ] Mobile app (React Native)
+- [ ] Integration with legal aid organization directories
+- [ ] Offline mode for low-connectivity regions
+- [ ] Verified legal professional review system
+
+---
+
+## Ethical Guidelines
+
+LEXARA operates under strict ethical principles:
+
+- **Not Legal Advice**: LEXARA always reminds users to consult a licensed attorney for their specific situation. Every response includes a disclaimer.
+- **No Hallucination**: Legal guidance is grounded in retrieved documents, not generated from model memory alone. All facts must trace to a cited source.
+- **Accessibility First**: Designed for users with no legal background. Plain language is a core requirement, not a nice-to-have.
+- **Bias Awareness**: Training data and model outputs are actively audited for demographic, jurisdictional, and socioeconomic bias. See `docs/bias_audit.md`.
+- **Privacy by Default**: No user queries are stored or logged without explicit consent.
+
+Contributors are expected to uphold these principles in every PR.
+
+---
+
+## Community
+
+- **Discussions**: [GitHub Discussions](https://github.com/your-org/lexara/discussions) — ideas, questions, proposals
+- **Discord**: [Join our server](https://discord.gg/lexara) — real-time collaboration
+- **Monthly calls**: First Saturday of each month — open to all contributors
+- **Code of Conduct**: We follow the [Contributor Covenant](CODE_OF_CONDUCT.md)
+
+---
+
+## Acknowledgements
+
+Built with ❤️ by contributors who believe legal knowledge should be free and accessible to everyone. Special thanks to the open-source NLP community, legal aid advocates, and pro bono attorneys who have guided this project.
+
+---
+
+<div align="center">
+
+**Star ⭐ this repo if you believe in accessible justice.**
+
+*LEXARA does not provide legal advice. Always consult a qualified attorney for your specific situation.*
+
+</div>
