@@ -3,7 +3,7 @@
 ## Participant Details
 
 **Full Name:**  
-<!-- Write your full name -->
+<Padmavathi K M -->
 
 **GitHub Username:**  
 <!-- Write your GitHub username -->
