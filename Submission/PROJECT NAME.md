@@ -3,38 +3,44 @@
 ## Participant Details
 
 **Full Name:**  
-<Padmavathi K M -->
+Padmavathi K M
 
 **GitHub Username:**  
-<!-- Write your GitHub username -->
+kmammu-stack
 
 **Team Name:**  
-<!-- Write your team name -->
+INARA
 
 **College/University:**  
-<!-- Write your college/university name -->
+BMSCE
 
 ---
 
 ## Project Details
 
 **Project Title:**  
-<!-- Write your project/idea title -->
+LEXARA
 
 **Project Description:**  
-<!-- Explain what your project does, what problem it solves, and why it matters -->
+LEXARA is an NLP-powered legal guide built to make justice accessible to everyone. It helps everyday people understand their legal rights without needing a lawyer. Users can ask questions in plain language and get clear, step-by-step legal guidance. The system classifies the legal domain, extracts key entities like jurisdiction and parties then retrieves the most relevant legal procedures using semantic search. A chain-of-thought reasoning engine then breaks down complex law into simple, actionable steps. It covers domains like criminal, civil, family, labor, housing, and immigration law. Built with Python, FastAPI and React, it's fully open-source and community-driven. LEXARA does not replace a lawyer but it empowers people to understand their situation before they walk into one.
 
 **Tech Stack Used:**  
-<!-- Example: Next.js, Node.js, MongoDB, Supabase, Tailwind CSS, Python, etc. -->
+NLP / AI
 
-**GitHub Repository Link:**  
-<!-- Add your public project repository link -->
+BERT & SetFit — intent classification
+spaCy — named entity recognition
+Sentence Transformers — semantic search
+FAISS / ChromaDB — vector storage
+Claude / OpenAI API — legal reasoning
 
-**Live Demo Link:**  
-<!-- Add deployed link if available -->
+Backend
 
-**Presentation / Demo Video Link:**  
-<!-- Optional but recommended -->
+Python 3.10+
+FastAPI
+
+Frontend
+
+React + TypeScript
 
 ---
 
@@ -42,9 +48,6 @@
 
 - [ ] My project is public on GitHub
 - [ ] My repository has a proper README.md
-- [ ] I have added setup/installation instructions
-- [ ] I have added screenshots/demo where possible
-- [ ] I have added a license file
 - [ ] My project is original and built/updated during the hackathon period
 
 ---
